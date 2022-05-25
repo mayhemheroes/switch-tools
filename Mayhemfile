@@ -1,0 +1,5 @@
+project: rnshah9/switch-tools
+target: switch-tools
+
+cmds:
+  - cmd: /repo/elf2nro @@ out
