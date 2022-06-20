@@ -1,4 +1,4 @@
-project: rnshah9/switch-tools
+project: switch-tools
 target: elf2nro
 
 cmds:
