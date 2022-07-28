@@ -6,14 +6,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential automake p
 COPY . /repo
 WORKDIR /repo
 RUN ./autogen.sh
-RUN ./configure
+RUN ./configure --prefix=/install
 RUN make -j8
-
-RUN mkdir -p /deps
-RUN ldd /repo/elf2nro | tr -s '[:blank:]' '\n' | grep '^/' | xargs -I % sh -c 'cp % /deps;'
+RUN make install
 
 FROM ubuntu:20.04 as package
-
-COPY --from=builder /deps /deps
-COPY --from=builder /repo/elf2nro /repo/elf2nro
-ENV LD_LIBRARY_PATH=/deps
+COPY --from=builder /install /install
+COPY --from=builder /repo/elf2nro /
