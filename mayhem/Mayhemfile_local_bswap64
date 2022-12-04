@@ -1,0 +1,5 @@
+project: switch-tools
+target: local-bswap64
+
+cmds:
+  - cmd: /fuzz_local_bswap64
